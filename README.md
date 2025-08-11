@@ -1,4 +1,4 @@
-# CodeCoach
+# CodeCoach 💪🏋️‍♂️
 
 CodeCoach is a personalized workout plan generator built with **Flask** (backend) and **React** (frontend). It creates custom training splits based on your goals and weekly frequency, with randomized exercises, rep/set ranges, and training tips.
 
@@ -12,7 +12,7 @@ CodeCoach is a personalized workout plan generator built with **Flask** (backend
 - **Frontend:** React, CSS
 - **Backend:** Flask, Python
 
-## Getting Started
+## Getting Started 🔥
 
 1. Clone the repo
 ```
@@ -21,19 +21,19 @@ cd codecoach
 ```
 2. Install backend dependencies
 ```
-pip install -r requirements.txt
+cd backend
+python3 -m pip install -r requirements.txt
 ```
-2. Install frontend dependencies
+3. Start backend
+```
+python3 app.py
+```
+4. Install frontend dependencies
 ```
 cd frontend
 npm install
 ```
-4. Start backend
-```
-python3 app.py
-```
-
-5. Start frontend
+5. Start frontend 👨‍💻
 ```
 npm run dev
 ```
