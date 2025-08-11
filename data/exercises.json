@@ -1,0 +1,52 @@
+{
+  "chest": {
+    "compound": ["Barbell Bench Press", "Incline Dumbbell Press", "Machine Chest Press", "Push-Ups"],
+    "isolation": ["Cable Flyes", "Chest Dips", "Pec Deck Machine"]
+  },
+  "back": {
+    "compound": ["Barbell Row", "Lat Pulldown", "Pull-Ups", "Underhand Row", "Chin-Ups", "Seated Cable Row"],
+    "isolation": ["Straight Arm Pulldown", "Shrugs", "Hyperextension"]
+  },
+  "shoulders": {
+    "compound": ["Machine Overhead Press", "Arnold Press", "Dumbell Shoulder Press"],
+    "isolation": ["Lateral Raises", "Rear Delt Fly", "Front Raises"]
+  },
+  "arms": {
+    "biceps": [
+      "Barbell Curl",
+      "Hammer Curl",
+      "Preacher Curl",
+      "Incline Dumbbell Curl"
+    ],
+    "triceps": [
+      "Close-Grip Bench Press",
+      "Weighted Dips",
+      "Triceps Pushdown",
+      "Overhead Extension",
+      "Skull Crushers"
+    ]
+  },
+  "forearms": {
+    "flexors": [
+      "Wrist Curl",
+      "Hammer Curl",
+      "Farmer's Carry",
+      "Reverse Curl"
+    ],
+    "extensors": [
+      "Reverse Wrist Curl",
+      "Zottman Curl",
+      "Wrist Roller (upward roll)",
+      "Reverse Grip Barbell Curl"
+    ]
+  },
+  "legs": {
+    "compound": ["Barbell Squat", "Leg Press", "Romanian Deadlift", "Lunges", "Bulgarian Split Squat", "Sissy Squat"],
+    "isolation": ["Leg Curl", "Leg Extension", "Calf Raises", "Adductor/Abductor Machines"]
+  },
+  "core": {
+    "general": ["Plank", "Sit-up", "Crunch", "Leg Raises", "Russian Twist", "Bicycle Crunches", "Mountain Climbers"]
+  }
+  
+}
+

@@ -1,0 +1,169 @@
+:root {
+  --color-bg: #000000;            
+  --color-card-bg: #121212;       
+  --color-accent: #ffffff;        
+  --color-accent-light: #bbbbbb;  
+  --color-text: #ffffff;          
+  --color-text-muted: #777777;    
+  --color-error: #ff4c4c;         
+  --color-border: #333333;        
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.app {
+  max-width: 720px;
+  width: 100%;
+}
+
+.card {
+  background-color: var(--color-card-bg);
+  border-radius: 12px;
+  padding: 1.8rem 2rem;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  border: 1px solid var(--color-border);
+}
+
+.card label {
+  flex: 1 1 180px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-text-muted);
+}
+
+.card select {
+  margin-top: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background-color: #000000;
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.25s ease;
+}
+
+.card select:hover,
+.card select:focus {
+  border-color: var(--color-accent-light);
+  outline: none;
+}
+
+button {
+  padding: 0.8rem 2rem;
+  background-color: var(--color-accent);
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  color: var(--color-bg);
+  font-size: 1.1rem;
+  cursor: pointer;
+  flex: 1 1 140px;
+  transition: background-color 0.3s ease;
+  align-self: flex-end;
+}
+
+button:disabled {
+  background-color: #444444;
+  cursor: not-allowed;
+  color: var(--color-text-muted);
+}
+
+button:hover:not(:disabled) {
+  background-color: var(--color-accent-light);
+  color: var(--color-bg);
+}
+
+.error {
+  color: var(--color-error);
+  font-weight: 700;
+  text-align: center;
+  margin-top: -1rem;
+  margin-bottom: 1.5rem;
+}
+
+.plan-display {
+  background-color: var(--color-card-bg);
+  border-radius: 12px;
+  padding: 1.8rem 2rem;
+  box-shadow: 0 3px 12px rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--color-border);
+}
+
+.plan-display h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: 1.8rem;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.plan-display p {
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 1.8rem;
+  color: var(--color-text-muted);
+}
+
+.day {
+  border-left: 5px solid var(--color-accent);
+  padding-left: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.day h3 {
+  margin: 0 0 0.8rem 0;
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.day ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  color: var(--color-text);
+}
+
+.day ul li {
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--color-border);
+  font-weight: 600;
+}
+
+.day ul li:last-child {
+  border-bottom: none;
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .card {
+    flex-direction: column;
+  }
+  button {
+    width: 100%;
+  }
+  .card label {
+    flex: 1 1 100%;
+  }
+}

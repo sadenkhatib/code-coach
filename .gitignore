@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+*.pyo
+*.pyd
+.Python
+
+# VSCode / JetBrains etc
+.vscode/
+.idea/
+
+# Node
+node_modules/
+
+# MacOS
+.DS_Store
+
+# Logs
+*.log
+
+# Env files
+.env
