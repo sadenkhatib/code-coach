@@ -1,6 +1,6 @@
 # CodeCoach 💪🏋️‍♂️
 
-CodeCoach is a personalized workout plan generator built with **Flask** (backend) and **React** (frontend). It creates custom training splits based on your goals and weekly frequency, with randomized exercises, rep/set ranges, and training tips.
+CodeCoach is a personalized workout plan generator built with **Flask** (backend) and **React + Vite** (frontend). It creates custom training splits based on your goals and weekly frequency, with randomized exercises, rep/set ranges, and training tips.
 
 ## Features
 - Choose from goals: **Hypertrophy**, **Strength**, **Fat Loss**
