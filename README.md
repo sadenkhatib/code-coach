@@ -9,7 +9,7 @@ CodeCoach is a personalized workout plan generator built with **Flask** (backend
 - Simple, clean UI with gym-themed styling
 
 ## Tech Stack
-- **Frontend:** React, CSS
+- **Frontend:** React, Vite, HTML, CSS
 - **Backend:** Flask, Python
 
 ## Getting Started 🔥
