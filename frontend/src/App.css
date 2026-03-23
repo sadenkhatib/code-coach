@@ -1,12 +1,16 @@
 :root {
-  --color-bg: #000000;            
-  --color-card-bg: #121212;       
-  --color-accent: #ffffff;        
-  --color-accent-light: #bbbbbb;  
-  --color-text: #ffffff;          
-  --color-text-muted: #777777;    
-  --color-error: #ff4c4c;         
-  --color-border: #333333;        
+  --color-bg: #000000;
+  --color-card-bg: #121212;
+  --color-accent: #ffffff;
+  --color-accent-light: #bbbbbb;
+  --color-text: #ffffff;
+  --color-text-muted: #777777;
+  --color-error: #ff4c4c;
+  --color-border: #333333;
+  --color-progress: #22c55e;
+  --color-maintain: #facc15;
+  --color-deload: #f97316;
+  --color-first: #60a5fa;
   --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -22,10 +26,50 @@ body {
 }
 
 .app {
-  max-width: 720px;
+  max-width: 760px;
   width: 100%;
 }
 
+/* ─── Tabs ─────────────────────────────────────────────────────────── */
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.8rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.5rem;
+}
+
+.tab {
+  background: none;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.55rem 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s, background-color 0.2s;
+  flex: none;
+  align-self: auto;
+}
+
+.tab:hover:not(:disabled) {
+  color: var(--color-text);
+  background-color: #1a1a1a;
+}
+
+.tab-active {
+  color: var(--color-accent);
+  border-bottom: 2px solid var(--color-accent);
+  background-color: #1a1a1a;
+}
+
+.tab:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ─── Plan Generator ───────────────────────────────────────────────── */
 .card {
   background-color: var(--color-card-bg);
   border-radius: 12px;
@@ -131,11 +175,38 @@ button:hover:not(:disabled) {
   margin-bottom: 1.5rem;
 }
 
-.day h3 {
-  margin: 0 0 0.8rem 0;
+.day-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.day-header h3 {
+  margin: 0;
   color: var(--color-accent);
   font-weight: 700;
   font-size: 1.25rem;
+}
+
+.btn-log-day {
+  background-color: transparent;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.35rem 0.9rem;
+  border-radius: 6px;
+  flex: none;
+  align-self: auto;
+  transition: background-color 0.2s;
+}
+
+.btn-log-day:hover {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
 }
 
 .day ul {
@@ -155,7 +226,322 @@ button:hover:not(:disabled) {
   border-bottom: none;
 }
 
-/* Responsive tweaks */
+/* ─── Workout Logger ───────────────────────────────────────────────── */
+.logger {
+  background-color: var(--color-card-bg);
+  border-radius: 12px;
+  padding: 1.8rem 2rem;
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.logger-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.logger-header h2 {
+  margin: 0.4rem 0 0;
+  font-size: 1.6rem;
+}
+
+.logger-goal-label {
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.btn-ghost {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0;
+  cursor: pointer;
+  flex: none;
+  align-self: flex-start;
+  transition: color 0.2s;
+}
+
+.btn-ghost:hover {
+  color: var(--color-accent);
+  background: none;
+}
+
+.log-entry {
+  background-color: #1a1a1a;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.log-entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.log-exercise-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.log-target {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.suggestion-chip {
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  align-items: center;
+}
+
+.suggestion-progress { background-color: rgba(34, 197, 94, 0.15);  border: 1px solid var(--color-progress); }
+.suggestion-maintain { background-color: rgba(250, 204, 21, 0.12);  border: 1px solid var(--color-maintain); }
+.suggestion-deload   { background-color: rgba(249, 115, 22, 0.12);  border: 1px solid var(--color-deload); }
+.suggestion-first    { background-color: rgba(96, 165, 250, 0.12);  border: 1px solid var(--color-first);  color: var(--color-first); }
+
+.suggestion-weight {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.suggestion-msg {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.log-inputs {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.log-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  flex: 1 1 120px;
+}
+
+.log-input {
+  margin-top: 0.35rem;
+  padding: 0.5rem 0.75rem;
+  background-color: #000;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 600;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.log-input:focus {
+  outline: none;
+  border-color: var(--color-accent-light);
+}
+
+.reps-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.rep-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  width: 68px;
+}
+
+.rep-input {
+  margin-top: 0.3rem;
+  padding: 0.45rem 0.6rem;
+  background-color: #000;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 600;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.rep-input:focus {
+  outline: none;
+  border-color: var(--color-accent-light);
+}
+
+.btn-primary {
+  padding: 0.85rem 2rem;
+  font-size: 1.05rem;
+}
+
+.btn-full {
+  width: 100%;
+  flex: none;
+  align-self: auto;
+}
+
+.logger-success {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-progress);
+  padding: 2rem;
+}
+
+/* ─── Progress View ────────────────────────────────────────────────── */
+.progress-view {
+  background-color: var(--color-card-bg);
+  border-radius: 12px;
+  padding: 1.8rem 2rem;
+  border: 1px solid var(--color-border);
+}
+
+.progress-view h2 {
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  font-size: 1.6rem;
+}
+
+.progress-select-row {
+  margin-bottom: 1.5rem;
+}
+
+.progress-label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.progress-select {
+  margin-top: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background-color: #000;
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  max-width: 420px;
+  width: 100%;
+}
+
+.suggestion-lg {
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  gap: 0.3rem;
+}
+
+.suggestion-header {
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+
+.suggestion-weight-lg {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.suggestion-reps-lg {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+}
+
+.history-table-wrap {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.history-table th {
+  background-color: #1a1a1a;
+  color: var(--color-text-muted);
+  text-align: left;
+  padding: 0.7rem 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.history-table td {
+  padding: 0.65rem 1rem;
+  border-top: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+.history-table tr:hover td {
+  background-color: #1a1a1a;
+}
+
+.goal-tag {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  color: var(--color-text-muted);
+}
+
+.muted {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* ─── Empty state ──────────────────────────────────────────────────── */
+.empty-state {
+  background-color: var(--color-card-bg);
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.empty-state p {
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.empty-state button {
+  flex: none;
+  width: auto;
+}
+
+/* ─── Responsive ───────────────────────────────────────────────────── */
 @media (max-width: 480px) {
   .card {
     flex-direction: column;
@@ -165,5 +551,15 @@ button:hover:not(:disabled) {
   }
   .card label {
     flex: 1 1 100%;
+  }
+  .tabs {
+    flex-wrap: wrap;
+  }
+  .log-inputs {
+    flex-direction: column;
+  }
+  .day-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

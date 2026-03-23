@@ -1,29 +1,140 @@
 {
   "chest": {
-    "compound": ["Barbell Bench Press", "Incline Dumbbell Press", "Machine Chest Press", "Push-Ups"],
-    "isolation": ["Cable Flyes", "Chest Dips", "Pec Deck Machine"]
+    "compound": [
+      "Barbell Bench Press",
+      "Incline Barbell Press",
+      "Decline Barbell Press",
+      "Dumbbell Bench Press",
+      "Incline Dumbbell Press",
+      "Decline Dumbbell Press",
+      "Machine Chest Press",
+      "Push-Ups",
+      "Weighted Push-Ups",
+      "Deficit Push-Ups",
+      "Close-Grip Bench Press",
+      "Low-to-High Cable Press",
+      "Dumbbell Squeeze Press",
+      "Landmine Press",
+      "Floor Press"
+    ],
+    "isolation": [
+      "Cable Flyes",
+      "Chest Dips",
+      "Pec Deck Machine",
+      "Cable Crossovers",
+      "Dumbbell Flyes",
+      "Incline Dumbbell Flyes",
+      "Decline Dumbbell Flyes",
+      "Incline Cable Flyes",
+      "Low Cable Flyes",
+      "Svend Press",
+      "Banded Flyes"
+    ]
   },
   "back": {
-    "compound": ["Barbell Row", "Lat Pulldown", "Pull-Ups", "Underhand Row", "Chin-Ups", "Seated Cable Row"],
-    "isolation": ["Straight Arm Pulldown", "Shrugs", "Hyperextension"]
+    "compound": [
+      "Barbell Row",
+      "Lat Pulldown",
+      "Pull-Ups",
+      "Chin-Ups",
+      "Underhand Barbell Row",
+      "Seated Cable Row",
+      "T-Bar Row",
+      "Pendlay Row",
+      "Dumbbell Row",
+      "Chest-Supported Row",
+      "Meadows Row",
+      "Rack Pull",
+      "Barbell Deadlift",
+      "Trap Bar Deadlift",
+      "Single-Arm Cable Row",
+      "Close-Grip Lat Pulldown",
+      "Wide-Grip Cable Row",
+      "Incline Dumbbell Row",
+      "Kneeling Cable Row",
+      "Machine Row"
+    ],
+    "isolation": [
+      "Straight Arm Pulldown",
+      "Shrugs",
+      "Hyperextension",
+      "Cable Pullover",
+      "Dumbbell Pullover",
+      "Reverse Fly",
+      "Face Pull",
+      "Rear Delt Row",
+      "Scapular Pull-Up",
+      "Good Mornings"
+    ]
   },
   "shoulders": {
-    "compound": ["Machine Overhead Press", "Arnold Press", "Dumbell Shoulder Press"],
-    "isolation": ["Lateral Raises", "Rear Delt Fly", "Front Raises"]
+    "compound": [
+      "Machine Overhead Press",
+      "Arnold Press",
+      "Dumbbell Shoulder Press",
+      "Barbell Overhead Press",
+      "Seated Dumbbell Press",
+      "Push Press",
+      "Bradford Press",
+      "Landmine Shoulder Press",
+      "Log Press",
+      "Z-Press"
+    ],
+    "isolation": [
+      "Lateral Raises",
+      "Rear Delt Fly",
+      "Front Raises",
+      "Cable Lateral Raise",
+      "Bent-Over Rear Delt Raise",
+      "Band Pull-Apart",
+      "Face Pull",
+      "Cable Front Raise",
+      "Upright Row",
+      "Dumbbell Upright Row",
+      "Plate Front Raise",
+      "Cable Rear Delt Fly",
+      "Incline Lateral Raise"
+    ]
   },
   "arms": {
     "biceps": [
       "Barbell Curl",
       "Hammer Curl",
       "Preacher Curl",
-      "Incline Dumbbell Curl"
+      "Incline Dumbbell Curl",
+      "Cable Curl",
+      "Concentration Curl",
+      "Spider Curl",
+      "EZ-Bar Curl",
+      "Reverse Curl",
+      "Zottman Curl",
+      "Machine Curl",
+      "Drag Curl",
+      "Overhead Cable Curl",
+      "Cross-Body Hammer Curl",
+      "21s",
+      "Rope Hammer Curl",
+      "Bayesian Cable Curl",
+      "Prone Incline Curl"
     ],
     "triceps": [
       "Close-Grip Bench Press",
       "Weighted Dips",
       "Triceps Pushdown",
-      "Overhead Extension",
-      "Skull Crushers"
+      "Overhead Triceps Extension",
+      "Skull Crushers",
+      "Diamond Push-Ups",
+      "Rope Pushdown",
+      "Cable Overhead Triceps Extension",
+      "Tate Press",
+      "JM Press",
+      "Single-Arm Cable Pushdown",
+      "Dumbbell Kickback",
+      "Reverse Grip Pushdown",
+      "Lying Cable Triceps Extension",
+      "Board Press",
+      "Banded Triceps Pushdown",
+      "Floor Press"
     ]
   },
   "forearms": {
@@ -31,22 +142,97 @@
       "Wrist Curl",
       "Hammer Curl",
       "Farmer's Carry",
-      "Reverse Curl"
+      "Reverse Curl",
+      "Barbell Wrist Curl",
+      "Cable Wrist Curl",
+      "Plate Pinch",
+      "Towel Pull-Up",
+      "Suitcase Carry",
+      "Dead Hang"
     ],
     "extensors": [
       "Reverse Wrist Curl",
       "Zottman Curl",
-      "Wrist Roller (upward roll)",
-      "Reverse Grip Barbell Curl"
+      "Wrist Roller",
+      "Reverse Grip Barbell Curl",
+      "Cable Reverse Wrist Curl",
+      "Reverse Dumbbell Curl",
+      "Extensor Band Spread"
     ]
   },
   "legs": {
-    "compound": ["Barbell Squat", "Leg Press", "Romanian Deadlift", "Lunges", "Bulgarian Split Squat", "Sissy Squat"],
-    "isolation": ["Leg Curl", "Leg Extension", "Calf Raises", "Adductor/Abductor Machines"]
+    "compound": [
+      "Barbell Squat",
+      "Front Squat",
+      "Box Squat",
+      "Pause Squat",
+      "Zercher Squat",
+      "Goblet Squat",
+      "Hack Squat",
+      "Leg Press",
+      "Romanian Deadlift",
+      "Sumo Deadlift",
+      "Trap Bar Deadlift",
+      "Lunges",
+      "Walking Lunges",
+      "Reverse Lunges",
+      "Bulgarian Split Squat",
+      "Sissy Squat",
+      "Step-Ups",
+      "Single-Leg Press",
+      "Sled Push",
+      "Sled Pull"
+    ],
+    "isolation": [
+      "Leg Curl",
+      "Seated Leg Curl",
+      "Single-Leg Leg Curl",
+      "Nordic Curl",
+      "Leg Extension",
+      "Calf Raises",
+      "Seated Calf Raise",
+      "Donkey Calf Raise",
+      "Leg Press Calf Raise",
+      "Adductor Machine",
+      "Abductor Machine",
+      "Glute Bridge",
+      "Hip Thrust",
+      "Cable Kickback",
+      "Cable Pull-Through"
+    ]
   },
   "core": {
-    "general": ["Plank", "Sit-up", "Crunch", "Leg Raises", "Russian Twist", "Bicycle Crunches", "Mountain Climbers"]
+    "general": [
+      "Plank",
+      "Side Plank",
+      "Sit-Up",
+      "Crunch",
+      "Leg Raises",
+      "Hanging Leg Raise",
+      "Russian Twist",
+      "Bicycle Crunches",
+      "Mountain Climbers",
+      "Cable Crunch",
+      "Ab Rollout",
+      "Dragon Flag",
+      "Hollow Body Hold",
+      "L-Sit",
+      "Dead Bug",
+      "Bird Dog",
+      "Pallof Press",
+      "V-Up",
+      "Toe Touches",
+      "Wood Chop",
+      "Cable Oblique Crunch",
+      "Weighted Decline Sit-Up",
+      "GHD Sit-Up",
+      "Swiss Ball Crunch",
+      "Windshield Wipers",
+      "Flutter Kicks",
+      "Tuck Crunches",
+      "Reverse Crunch",
+      "Landmine Rotation",
+      "Suitcase Carry"
+    ]
   }
-  
 }
-

@@ -9,7 +9,7 @@ venv/
 # VSCode / JetBrains etc
 .vscode/
 .idea/
-
+harm 
 # Node
 node_modules/
 
@@ -21,3 +21,6 @@ node_modules/
 
 # Env files
 .env
+.env.local
+.env.*.local
+*.db
