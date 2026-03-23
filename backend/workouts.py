@@ -91,14 +91,19 @@ def generate_plan(goal, days):
 def build_exercise_entries(exercises, muscle, goal):
     result = []
     for ex in exercises:
-        if goal.lower() == "hypertrophy":
-            sets, reps = 3, "8–10"
-        elif goal.lower() == "strength":
-            sets, reps = 2, "3–6"
-        elif goal.lower() == "fat loss":
-            # Compounds: slightly lower reps, isolations: higher
-                sets, reps = 2, "6–10"
-                
+        g = goal.lower()
+        if g == "hypertrophy":
+            # Double-progression: stay in 8-12 range, add 2.5 lbs when all sets hit 12
+            sets, reps = 4, "8–12"
+        elif g == "strength":
+            # Linear progression: heavy triples/fives, 5 sets for volume
+            sets, reps = 5, "3–5"
+        elif g == "fat loss":
+            # Higher reps keep heart rate up and total work volume high
+            sets, reps = 3, "12–15"
+        else:
+            sets, reps = 3, "8–12"
+
         result.append({
             "exercise": f"{ex} ({muscle})",
             "sets": sets,

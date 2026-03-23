@@ -8,6 +8,7 @@ from database import (
     get_exercise_history,
     get_last_session,
     get_all_logged_exercises,
+    reset_all_logs,
 )
 from progression import suggest_progression
 
@@ -115,6 +116,16 @@ def suggest(exercise_name):
         last       = get_last_session(exercise_name)
         suggestion = suggest_progression(last)
         return jsonify({"exercise": exercise_name, **suggestion})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route('/reset-progress', methods=['DELETE'])
+def reset_progress():
+    """Delete all workout logs — used by the Reset Progress button in the UI."""
+    try:
+        reset_all_logs()
+        return jsonify({"status": "ok", "message": "All progress cleared."})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

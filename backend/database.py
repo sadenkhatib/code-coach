@@ -104,3 +104,12 @@ def get_all_logged_exercises():
         rows = cur.fetchall()
     conn.close()
     return [r["exercise_name"] for r in rows]
+
+
+def reset_all_logs():
+    """Delete every row in workout_logs — wipes all progress history."""
+    conn = get_connection()
+    with conn:
+        with conn.cursor() as cur:
+            cur.execute("DELETE FROM workout_logs")
+    conn.close()

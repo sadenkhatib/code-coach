@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getLoggedExercises, getHistory, getSuggestion } from '../api/workoutApi';
+import { getLoggedExercises, getHistory, getSuggestion, resetProgress } from '../api/workoutApi';
 
 /**
  * ProgressView
@@ -15,6 +15,7 @@ export default function ProgressView() {
   const [suggestion, setSuggestion] = useState(null);
   const [loading, setLoading]       = useState(false);
   const [listLoading, setListLoading] = useState(true);
+  const [resetting, setResetting]   = useState(false);
 
   // Load distinct exercise names on mount
   useEffect(() => {
@@ -54,6 +55,22 @@ export default function ProgressView() {
     }
   }
 
+  async function handleReset() {
+    if (!window.confirm('This will permanently delete all your logged progress. Are you sure?')) return;
+    setResetting(true);
+    try {
+      await resetProgress();
+      setExercises([]);
+      setSelected('');
+      setHistory([]);
+      setSuggestion(null);
+    } catch {
+      alert('Failed to reset progress. Please try again.');
+    } finally {
+      setResetting(false);
+    }
+  }
+
   function avgReps(repsJson) {
     try {
       const arr = typeof repsJson === 'string' ? JSON.parse(repsJson) : repsJson;
@@ -66,7 +83,18 @@ export default function ProgressView() {
 
   return (
     <div className="progress-view">
-      <h2>Exercise Progress</h2>
+      <div className="progress-header">
+        <h2>Exercise Progress</h2>
+        {exercises.length > 0 && (
+          <button
+            className="btn-reset"
+            onClick={handleReset}
+            disabled={resetting}
+          >
+            {resetting ? 'Resetting…' : 'Reset Progress'}
+          </button>
+        )}
+      </div>
 
       {listLoading && <p className="muted">Loading logged exercises…</p>}
 

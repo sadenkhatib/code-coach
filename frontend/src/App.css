@@ -418,10 +418,43 @@ button:hover:not(:disabled) {
   border: 1px solid var(--color-border);
 }
 
-.progress-view h2 {
-  margin-top: 0;
+.progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.8rem;
   margin-bottom: 1.2rem;
+}
+
+.progress-header h2 {
+  margin: 0;
   font-size: 1.6rem;
+}
+
+.btn-reset {
+  background: transparent;
+  border: 1px solid #ef4444;
+  color: #ef4444;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  flex: none;
+  width: auto;
+  align-self: auto;
+}
+
+.btn-reset:hover:not(:disabled) {
+  background-color: #ef4444;
+  color: #000;
+}
+
+.btn-reset:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .progress-select-row {

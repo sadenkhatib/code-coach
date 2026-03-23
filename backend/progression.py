@@ -1,27 +1,41 @@
 """
-Encapsulates the rules for suggesting weight / rep changes between sessions.
-Kept isolated so the logic is easy to explain, test, and tweak independently
-of the rest of the application.
+Progressive overload suggestion engine.
 
-  PROGRESS  — user completed every set at or above the top of their target
-               rep range -> add WEIGHT_INCREMENT_LBS next session.
-  MAINTAIN  — user completed every set within the target rep range, but
-               at least one set fell below the ceiling -> keep weight, aim
-               for the top of the range next time.
-  DELOAD    — user failed to complete at least one set at the floor of the
-               target rep range -> drop WEIGHT_INCREMENT_LBS.
+Kept as its own module so the logic is easy to explain, test, and tweak
+independently of the rest of the application.
+
+How it works
+------------
+After every logged session the user's reps-per-set are compared against the
+target rep range for their training goal.  Three outcomes are possible:
+
+  PROGRESS  — every set hit the TOP of the target range
+               → add weight next session (goal-specific increment)
+
+  MAINTAIN  — every set was within range but at least one missed the ceiling
+               → keep the same weight and aim for the top of the range
+
+  DELOAD    — at least one set fell BELOW the bottom of the range
+               → drop one increment and rebuild
+
+Training goals and their parameters
+------------------------------------
+  Strength    : 3–5 reps  |  +5 lb jumps  (classic linear progression)
+  Hypertrophy : 8–12 reps |  +2.5 lb jumps (double-progression style)
+  Fat Loss    : 12–15 reps |  +2.5 lb jumps (metabolic, keep moving)
 """
 
 import json
 
-WEIGHT_INCREMENT_LBS = 5.0   # standard small plate jump
-
-# (min_reps, max_reps) per training goal
-REP_RANGES = {
-    "hypertrophy": (8, 10),
-    "strength":    (3, 6),
-    "fat loss":    (6, 10),
+# (rep_min, rep_max, weight_increment_lbs)
+GOAL_PARAMS = {
+    "strength":    (3,  5,  5.0),
+    "hypertrophy": (8,  12, 2.5),
+    "fat loss":    (12, 15, 2.5),
 }
+
+# Fallback if goal string is unrecognised
+_DEFAULT_PARAMS = (8, 12, 2.5)
 
 
 def _parse_reps(reps_completed):
@@ -32,18 +46,16 @@ def _parse_reps(reps_completed):
 
 
 def evaluate_performance(reps_per_set, rep_min, rep_max):
-    
-    """Classify the session as 'progress', 'maintain', or 'deload'.
-    - PROGRESS  — all sets at or above rep_max
-    - MAINTAIN  — all sets at or above rep_min, but at least one set below rep_max
-    - DELOAD    — at least one set below rep_min
     """
+    Classify the session outcome.
 
+    Returns one of: 'progress', 'maintain', 'deload'
+    """
     if not reps_per_set:
         return "maintain"
 
     all_hit_ceiling = all(r >= rep_max for r in reps_per_set)
-    all_in_range    = all(r >= rep_min  for r in reps_per_set)
+    all_in_range    = all(r >= rep_min for r in reps_per_set)
 
     if all_hit_ceiling:
         return "progress"
@@ -53,10 +65,17 @@ def evaluate_performance(reps_per_set, rep_min, rep_max):
         return "deload"
 
 
-"Return a progression suggestion based on the last logged session."
-
 def suggest_progression(last_session):
+    """
+    Return a progression suggestion dict based on the last logged session.
 
+    Keys returned
+    -------------
+    suggested_weight : float | None
+    suggested_reps   : str   | None   e.g. "8–12"
+    action           : str            'progress' | 'maintain' | 'deload' | 'first_session'
+    message          : str
+    """
     if last_session is None:
         return {
             "suggested_weight": None,
@@ -65,30 +84,30 @@ def suggest_progression(last_session):
             "message":          "No previous data logged. Start with a comfortable weight and record it.",
         }
 
-    goal       = last_session["goal"].lower().strip()
-    weight     = float(last_session["weight_lbs"])
-    reps_list  = _parse_reps(last_session["reps_completed"])
+    goal      = last_session["goal"].lower().strip()
+    weight    = float(last_session["weight_lbs"])
+    reps_list = _parse_reps(last_session["reps_completed"])
 
-    rep_min, rep_max = REP_RANGES.get(goal, (8, 10))
+    rep_min, rep_max, increment = GOAL_PARAMS.get(goal, _DEFAULT_PARAMS)
     action = evaluate_performance(reps_list, rep_min, rep_max)
 
     if action == "progress":
-        new_weight = weight + WEIGHT_INCREMENT_LBS
+        new_weight = weight + increment
         message = (
-            f"Great work — you hit {rep_max}+ reps on every set! "
-            f"Add {int(WEIGHT_INCREMENT_LBS)} lbs this session."
+            f"You hit {rep_max}+ reps on every set — great work! "
+            f"Add {increment} lbs this session."
         )
     elif action == "maintain":
         new_weight = weight
         message = (
-            f"Solid session. Stay at this weight and push to hit "
-            f"{rep_max} reps on every set before adding load."
+            f"Solid session. Keep this weight and push to get {rep_max} reps "
+            f"on every set before adding load."
         )
     else:  # deload
-        new_weight = max(0.0, weight - WEIGHT_INCREMENT_LBS)
+        new_weight = max(0.0, weight - increment)
         message = (
             f"You fell below {rep_min} reps on at least one set. "
-            f"Drop {int(WEIGHT_INCREMENT_LBS)} lbs and focus on clean form."
+            f"Drop {increment} lbs and focus on clean form before progressing."
         )
 
     return {

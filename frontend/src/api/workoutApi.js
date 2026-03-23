@@ -53,3 +53,10 @@ export function getSuggestion(exerciseName) {
 export function getLoggedExercises() {
   return apiFetch('/exercises-logged');
 }
+
+/**
+ * Wipe all logged progress from the database.
+ */
+export function resetProgress() {
+  return apiFetch('/reset-progress', { method: 'DELETE' });
+}
