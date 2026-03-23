@@ -1,23 +1,20 @@
 """
-progression.py — Progressive Overload Calculation Module
-
 Encapsulates the rules for suggesting weight / rep changes between sessions.
 Kept isolated so the logic is easy to explain, test, and tweak independently
 of the rest of the application.
 
-Core rule:
   PROGRESS  — user completed every set at or above the top of their target
-               rep range → add WEIGHT_INCREMENT_LBS next session.
+               rep range -> add WEIGHT_INCREMENT_LBS next session.
   MAINTAIN  — user completed every set within the target rep range, but
-               at least one set fell below the ceiling → keep weight, aim
+               at least one set fell below the ceiling -> keep weight, aim
                for the top of the range next time.
   DELOAD    — user failed to complete at least one set at the floor of the
-               target rep range → drop WEIGHT_INCREMENT_LBS.
+               target rep range -> drop WEIGHT_INCREMENT_LBS.
 """
 
 import json
 
-WEIGHT_INCREMENT_LBS = 5.0   # standard small-plate jump
+WEIGHT_INCREMENT_LBS = 5.0   # standard small plate jump
 
 # (min_reps, max_reps) per training goal
 REP_RANGES = {
@@ -35,17 +32,13 @@ def _parse_reps(reps_completed):
 
 
 def evaluate_performance(reps_per_set, rep_min, rep_max):
+    
+    """Classify the session as 'progress', 'maintain', or 'deload'.
+    - PROGRESS  — all sets at or above rep_max
+    - MAINTAIN  — all sets at or above rep_min, but at least one set below rep_max
+    - DELOAD    — at least one set below rep_min
     """
-    Classify the session as 'progress', 'maintain', or 'deload'.
 
-    Args:
-        reps_per_set (list[int]): actual reps logged for each set.
-        rep_min (int): floor of the target rep range.
-        rep_max (int): ceiling of the target rep range.
-
-    Returns:
-        str: one of 'progress', 'maintain', 'deload'.
-    """
     if not reps_per_set:
         return "maintain"
 
@@ -60,22 +53,10 @@ def evaluate_performance(reps_per_set, rep_min, rep_max):
         return "deload"
 
 
+"Return a progression suggestion based on the last logged session."
+
 def suggest_progression(last_session):
-    """
-    Return a progression suggestion based on the last logged session.
 
-    Args:
-        last_session (dict | None): row from the database, or None if no
-            history exists yet. Expected keys: exercise_name, goal,
-            weight_lbs, sets_completed, reps_completed, logged_at.
-
-    Returns:
-        dict with keys:
-            suggested_weight (float | None)
-            suggested_reps   (str | None)    e.g. "8–10"
-            action           (str)           'first_session' | 'progress' | 'maintain' | 'deload'
-            message          (str)           human-readable coaching note
-    """
     if last_session is None:
         return {
             "suggested_weight": None,
