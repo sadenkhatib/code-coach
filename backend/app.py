@@ -129,6 +129,9 @@ def reset_progress():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route('/')
+def health():
+    return 'ok', 200
 
 if __name__ == '__main__':
     debug = os.environ.get('FLASK_DEBUG', 'false').lower() == 'true'
